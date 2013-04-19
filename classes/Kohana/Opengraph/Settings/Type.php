@@ -38,7 +38,7 @@ class Kohana_Opengraph_Settings_Type {
 		{
 			if(is_string($content))
 			{
-				$string .= "<meta name=\"$this->type:$name\" content=\"$content\" />\n\t";
+				$string .= "<meta property=\"$this->type:$name\" content=\"$content\" />\n\t";
 			}
 		}
 		
