@@ -73,6 +73,13 @@ class Kohana_Opengraph_Settings {
 		{
 			return '<meta name="'.$this->prefix($name).'" content="'.$content.'" />';
 		}
+		
+		if(is_array($content))
+		{
+			$string = '';
+			$string .= $this->_build_meta($name, $content);
+			return $string;
+		}
 	}
 	
 	/**
