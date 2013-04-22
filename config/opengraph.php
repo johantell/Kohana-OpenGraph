@@ -13,12 +13,7 @@ return array(
 			#'alternative' => array('en_us', 'en_gb'),
 		),
 		
-		'description' => 'This is a nice description',
-		
-		'fb_admins' => array(
-		
-		),
-	
+		'description' => 'This is a nice description',	
 	),
 
 );

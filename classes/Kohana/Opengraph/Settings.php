@@ -11,7 +11,7 @@ class Kohana_Opengraph_Settings {
 	private $locale;
 
 	private $description;
-	private $fb_admins = array();
+	private $admins = array();
 	private $app_id;
 	
 	public function __construct($settings)
@@ -69,17 +69,19 @@ class Kohana_Opengraph_Settings {
 	/**
 	 *
 	 */
-	private function _build_meta($name, $content = null)
+	private function _build_meta($name, $content = null, $use_prefix = true)
 	{
 		if(is_string($content) OR is_integer($content))
 		{
-			return '<meta property="'.$this->prefix($name).'" content="'.$content.'" />';
+			$name = ($use_prefix) ? $this->prefix($name) : $name;
+					
+			return '<meta property="'.$name.'" content="'.$content.'" />';
 		}
 		
 		if(is_array($content))
 		{
 			$string = '';
-			$string .= $this->_build_meta($name, $content);
+			$string .= $this->_build_meta($name, $content, $use_prefix);
 			return $string;
 		}
 	}
@@ -102,20 +104,25 @@ class Kohana_Opengraph_Settings {
 			{
 				$string .= $content->render();
 			}
-			
-			if(!is_array($content) AND !is_object($content))
-			{		
-				$string .= $this->_build_meta($name, $content)."\n\t";
-			}
 	
-			else if($name == 'fb_admins')
+			if($name == 'admins')
 			{
-				$string .= $this->_build_meta($name, implode(',', $content))."\n\t";
+				$string .= $this->_build_meta("fb:$name", implode(',', $content), false)."\n\t";
+			}
+			
+			else if($name == 'app_id')
+			{
+				$string .= $this->_build_meta("fb:$name", $content, false)."\n\t";
 			}
 			
 			else if($name == 'alternative')
 			{
 				$string .= $this->_build_meta("locale:$name", implode(',', $content))."\n\t";
+			}			
+			
+			else if(!is_array($content) AND !is_object($content))
+			{		
+				$string .= $this->_build_meta($name, $content)."\n\t";
 			}
 			
 			else if(is_array($content))
