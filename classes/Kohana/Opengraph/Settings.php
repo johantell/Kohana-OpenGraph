@@ -71,7 +71,7 @@ class Kohana_Opengraph_Settings {
 	 */
 	private function _build_meta($name, $content = null)
 	{
-		if(is_string($content))
+		if(is_string($content) OR is_integer($content))
 		{
 			return '<meta property="'.$this->prefix($name).'" content="'.$content.'" />';
 		}
