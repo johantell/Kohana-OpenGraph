@@ -8,9 +8,10 @@ class Kohana_Opengraph_Settings {
 	private $image;
 	private $type;
 	private $locale;
-	
+
 	private $description;
 	private $fb_admins = array();
+	private $app_id;
 	
 	public function __construct($settings)
 	{	
