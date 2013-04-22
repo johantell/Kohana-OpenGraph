@@ -103,9 +103,24 @@ class Kohana_Opengraph_Settings {
 				$string .= $content->render();
 			}
 			
-			if(is_string($content))
+			if(!is_array($content) AND !is_object($content))
 			{		
 				$string .= $this->_build_meta($name, $content)."\n\t";
+			}
+	
+			else if($name == 'fb_admins')
+			{
+				$string .= $this->_build_meta($name, implode(',', $content))."\n\t";
+			}
+			
+			else if($name == 'alternative')
+			{
+				$string .= $this->_build_meta("locale:$name", implode(',', $content))."\n\t";
+			}
+			
+			else if(is_array($content))
+			{
+				$string .= $this->render($content);
 			}
 		}		
 		
