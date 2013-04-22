@@ -7,6 +7,7 @@ class Kohana_Opengraph_Settings {
 	private $url;
 	private $image;
 	private $type;
+	private $_type;
 	private $locale;
 
 	private $description;
@@ -54,7 +55,7 @@ class Kohana_Opengraph_Settings {
 	 */
 	public function add_type($type, $settings = array())
 	{
-		$this->type = Opengraph_Settings_Type::factory($type, $settings);
+		$this->_type = Opengraph_Settings_Type::factory($type, $settings);
 	}
 	
 	/**
