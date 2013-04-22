@@ -10,7 +10,7 @@ return array(
 		
 		'locale' => array(
 			'locale' => 'sv_se',
-			'alternative' => array('en_us', 'en_gb'),
+			#'alternative' => array('en_us', 'en_gb'),
 		),
 		
 		'description' => 'This is a nice description',
